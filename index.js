@@ -10,7 +10,13 @@ const SpotifyWebApi = require('spotify-web-api-node');
 const AuthMiddleware = require("./AuthMiddleware.js");
 
 const Redis = require('ioredis');
-const redisClient = new Redis(`${process.env.REDIS_URL}`);
+
+const redisClient = new Redis({
+    // Use Render Redis service name as host, red-xxxxxxxxxxxxxxxxxxxx
+    host: process.env.REDIS_SERVICE_NAME,
+    // Default Redis port
+    port: process.env.REDIS_PORT || 6379,
+});
 
 const uri = process.env.MONGO_URI
 const app = express();
