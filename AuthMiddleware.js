@@ -7,6 +7,7 @@ module.exports = (req, res, next) => {
 
     if (!cookie) {
         // Status code 401 means unauthorized
+        console.log("NO COOKIES");
         return res.status(401).json({verified: false})
     } else {
         let cookies = cookie.split("; ");

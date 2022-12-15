@@ -156,7 +156,7 @@ app.post("/refresh", (req, res) => {
 })
 
 // Update User with a match
-app.put('/addmatch', AuthMiddleware, async (req, res) => {
+app.put('/addmatch', async (req, res) => {
     const client = new MongoClient(uri)
     const { userId, matchedUserId, name, picture, matchName, matchPicture, matchNewMessages, newMessages } = req.body
 
@@ -246,7 +246,7 @@ app.put("/nomatch", async (req, res) => {
 })
 
 // Get individual user
-app.get('/user', AuthMiddleware, async (req, res) => {
+app.get('/user', async (req, res) => {
     const client = new MongoClient(uri)
     const userId = req.query.userId
 
@@ -286,7 +286,7 @@ app.put('/update-new-message', async (req, res) => {
 })
 
 // Get all matches of user in the Database
-app.get('/matched-users', AuthMiddleware, async (req, res) => {
+app.get('/matched-users', async (req, res) => {
     const client = new MongoClient(uri)
     const userIds = JSON.parse(req.query.userIds).map(item => item.user_id)
     const userId = req.query.userId
@@ -312,7 +312,7 @@ app.get('/matched-users', AuthMiddleware, async (req, res) => {
 })
 
 // Get all the Matching Genre Users in the Database
-app.get('/same-genre-users', AuthMiddleware, async (req, res) => {
+app.get('/same-genre-users', async (req, res) => {
     const client = new MongoClient(uri)
     const params = JSON.parse(req.query.big_object)
 
@@ -367,7 +367,7 @@ app.get('/same-genre-users', AuthMiddleware, async (req, res) => {
 })
 
 // Update a User in the Database
-app.put('/user', AuthMiddleware, async (req, res) => {
+app.put('/user', async (req, res) => {
     const client = new MongoClient(uri)
     const formData = req.body.formData
     const genres = req.body.genres
@@ -396,7 +396,7 @@ app.put('/user', AuthMiddleware, async (req, res) => {
 })
 
 // Get Messages by from_userId and to_userId
-app.get('/messages', AuthMiddleware, async (req, res) => {
+app.get('/messages', async (req, res) => {
     const { userId, correspondingUserId } = req.query
     const client = new MongoClient(uri)
 
@@ -434,7 +434,7 @@ app.post('/message', async (req, res) => {
     }
 })
 
-app.delete("/delete", AuthMiddleware, async (req, res) => {
+app.delete("/delete", async (req, res) => {
     const client = new MongoClient(uri)
     const userId = req.body.userId;
 
