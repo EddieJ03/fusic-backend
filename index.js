@@ -26,7 +26,8 @@ app.use(require('cors')());
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: '*',
+        origin: `${process.env.REDIRECT_URI}`,
+        credentials: true,
         methods: ["GET", "POST", "PUT"]
     }
 });
