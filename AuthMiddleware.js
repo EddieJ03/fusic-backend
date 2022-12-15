@@ -1,7 +1,9 @@
 const jwt = require('jsonwebtoken')
 
 module.exports = (req, res, next) => {
-    const { cookie } = req.headers
+    const { cookie } = req.headers;
+
+    console.log(req);
 
     if (!cookie) {
         // Status code 401 means unauthorized
