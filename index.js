@@ -21,7 +21,7 @@ const redisClient = new Redis({
 const uri = process.env.MONGO_URI
 const app = express();
 app.use(express.json());
-app.use(require('cors')({credentials: true}));
+app.use(require('cors')({origin: `${process.env.REDIRECT_URI}`, credentials: true}));
 
 const server = http.createServer(app);
 const io = new Server(server, {
